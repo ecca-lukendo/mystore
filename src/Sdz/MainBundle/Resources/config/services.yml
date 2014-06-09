@@ -1,0 +1,7 @@
+parameters:
+#    sdz_main.example.class: Sdz\MainBundle\Example
+
+services:
+#    sdz_main.example:
+#        class: %sdz_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

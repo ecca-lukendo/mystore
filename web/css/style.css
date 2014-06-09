@@ -1,0 +1,18 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#content{
+	margin: 0 auto;
+	width: 800px;
+	height: 100%;
+}
+#side{
+	float: left;
+	width: 100px;
+	
+}
+#main{
+	float: right;
+	width: 690px;
+}

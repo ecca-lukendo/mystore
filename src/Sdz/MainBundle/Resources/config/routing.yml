@@ -1,0 +1,5 @@
+home:
+    pattern:  /produits/{id}
+    defaults: { _controller: SdzMainBundle:Main:index, id: 0 }
+    requirements:
+         id: \d+

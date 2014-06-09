@@ -1,0 +1,4 @@
+sdz_main:
+    resource: "@SdzMainBundle/Resources/config/routing.yml"
+    prefix:   /
+

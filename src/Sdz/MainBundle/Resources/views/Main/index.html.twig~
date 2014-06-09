@@ -1,0 +1,45 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Produits {% endblock %}
+
+{% block body %}
+<div id="side">
+	<h3>Categories</h3>
+		<ul>
+			<li><a href="{{ path('home', {'id': 0}) }}">Tous</a></li>
+			{% for categorie in categories %}
+
+				<li><a href="{{ path('home', {'id': categorie.id }) }}">{{ categorie.nom }}</a></li>
+
+			{% endfor %}
+	</ul>
+</div>
+
+<div id="main">
+
+	<h3>Liste des produits</h3>
+
+	<table border>
+
+		<tr><td width="80">Produit</td><td align="left" width="500">Description</td><td width="50">Prix</td><td width="50"></td></tr>
+
+		{% for produit in produits %}
+
+			<tr>
+
+				<td><img src="{{ asset('') }}{{produit.image}}" width="80"></td>
+
+				<td valign="top" width="500">{{ produit.nom }}<br/>{{ produit.description }}</td>
+
+				<td valign="top">{{ produit.prix }}</td>
+
+				<td valign="top"><a href="#">Ajouter au panier</td>
+
+			</tr>
+		{% endfor %}
+
+	</table>
+
+</div>
+
+{% endblock %}

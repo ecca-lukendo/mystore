@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html, charset=iso-8815"/>
+		<title>{% block title%}My Store{% endblock %}</title>
+		{% block stylesheets %}
+			<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
+		{% endblock %}
+	</head>
+	<body>
+		<div id="content">
+			<h1>My Store</h1>
+			<p align="right"><a href="#">Compte</a> | <a href="#">Panier</a></p>
+			{% block body %}
+	
+		 	{% endblock %}
+		</div>
+	</body>
+</html>

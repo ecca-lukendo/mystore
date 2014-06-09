@@ -1,0 +1,5 @@
+home:
+    pattern:  /produits/{categorie}
+    defaults: { _controller: SdzMainBundle:Main:index, categorie: 0 }
+    requirements:
+         categorie: \d+
