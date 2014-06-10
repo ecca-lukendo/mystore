@@ -3,3 +3,24 @@ home:
     defaults: { _controller: SdzMainBundle:Main:index, id: 0 }
     requirements:
          id: \d+
+login:
+    pattern: /login
+    defaults: { _controller: SdzMainBundle:Login:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
+
+compte:
+    pattern: /compte
+    defaults: { _controller: SdzMainBundle:Login:compte }
+
+admin:
+    pattern: /admin
+    defaults: { _controller: SdzMainBundle:Admin:index }
+
+client:
+    pattern: /client
+    defaults: { _controller: SdzMainBundle:Client:index }

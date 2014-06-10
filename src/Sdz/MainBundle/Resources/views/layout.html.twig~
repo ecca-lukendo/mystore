@@ -10,7 +10,7 @@
 	<body>
 		<div id="content">
 			<h1>My Store</h1>
-			<p align="right"><a href="#">Compte</a> | <a href="#">Panier</a>
+			<p align="right"><a href="{{ path('login') }}">Compte</a> | <a href="#">Panier</a></p>
 			{% block body %}
 	
 		 	{% endblock %}

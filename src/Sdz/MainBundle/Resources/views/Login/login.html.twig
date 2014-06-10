@@ -1,0 +1,26 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Login {% endblock %}
+
+{% block body %}
+<p><a href="{{ path('home') }}">Accueil</a></p>
+<h3>Connexion</h3>
+
+{% if error %}
+	<div><font style="color: #ff0000;">{{ error.message }}</font></div>
+{% endif %}
+
+<form action="{{ path('login_check') }}" method="POST">
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" id="username" name="_username" value="{{last_username}}"/></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" id="password" name="_password"/></td>
+		</tr>
+		<tr><td align="right" colspan="2"><input type="submit" value="Envoyer"/></td></tr>
+	</table>
+</form>
+{% endblock %}
