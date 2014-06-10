@@ -9,8 +9,18 @@
 	</head>
 	<body>
 		<div id="content">
-			<h1>My Store</h1>
-			<p align="right"><a href="{{ path('login') }}">Compte</a> | <a href="#">Panier</a></p>
+			<div id="header">
+				<h1>My Store</h1>
+				<p align="right">
+						{% if app.user %}
+							Bonjour, <a href="{{ path('compte') }}">{{ app.user.username }}</a> | <a href="{{ path('logout') }}">Se déconnecter</a>
+						{% else %}
+							<a href="{{ path('login') }}">Compte</a> 
+						{% endif %}
+						| <a href="#">Panier</a>
+				</p>
+			</div>
+			<div><a href="{{ path('home') }}">Accueil</a></div>
 			{% block body %}
 	
 		 	{% endblock %}

@@ -21,6 +21,54 @@ admin:
     pattern: /admin
     defaults: { _controller: SdzMainBundle:Admin:index }
 
+admin_utilisateur_nouveau:
+    pattern: /admin/utilisateurs/nouveau
+    defaults: { _controller: SdzMainBundle:Admin:nouvUtil }
+
+admin_utilisateur_modifier:
+    pattern: /admin/utilisateurs/modifier/{id}
+    defaults: { _controller: SdzMainBundle:Admin:modifUtil }
+
+admin_utilisateur_supprimer:
+    pattern: /admin/utilisateurs/supprimer/{id}
+    defaults: { _controller: SdzMainBundle:Admin:supUtil }
+
+admin_produits:
+   pattern: /admin/produits
+   defaults: { _controller: SdzMainBundle:Admin:produits }
+
+admin_produit_nouveau:
+   pattern: /admin/produits/nouveau
+   defaults: { _controller: SdzMainBundle:Admin:nouvProd }
+
+admin_produit_modifier:
+   pattern: /admin/produits/modifier
+   defaults: { _controller: SdzMainBundle:Admin:modifProd }
+
+admin_produit_supprimer:
+   pattern: /admin/produits/supprimer
+   defaults: { _controller: SdzMainBundle:Admin:supProd }
+
+admin_categories:
+   pattern: /admin/categories
+   defaults: { _controller: SdzMainBundle:Admin:categories }
+
+admin_categorie_nouveau:
+   pattern: /admin/categories/nouveau
+   defaults: { _controller: SdzMainBundle:Admin:nouvCat }
+
+admin_categorie_modifier:
+   pattern: /admin/categories/modifier/{id}
+   defaults: { _controller: SdzMainBundle:Admin:modifCat }
+   requirements:
+              id: \d+
+
+admin_categorie_supprimer:
+   pattern: /admin/categories/supprimer/{id}
+   defaults: { _controller: SdzMainBundle:Admin:supCat }
+   requirements:
+             id: \d+
+
 client:
     pattern: /client
     defaults: { _controller: SdzMainBundle:Client:index }

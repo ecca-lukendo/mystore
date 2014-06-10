@@ -2,10 +2,23 @@ body{
 	margin: 0;
 	padding: 0;
 }
+#header{
+	margin-top: -21px;
+	width: 800px;
+	height: 100px;
+	background: #bdbdbd;
+}
 #content{
 	margin: 0 auto;
+	padding: 0;
 	width: 800px;
-	height: 100%;
+	height: 700px;
+}
+#menu ul{
+	margin-left: -40px;
+}
+#menu li{
+	display: inline;
 }
 #side{
 	float: left;

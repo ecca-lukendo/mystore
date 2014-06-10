@@ -1,0 +1,36 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Comte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li>Utilisateurs</li> |
+		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
+		<li><a href="{{ path('admin_categories') }}">Catégories</a></li> |
+		<li><a href="#">Commandes</a></li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Utilisateur</h3>
+	<a href="{{ path('admin_utilisateur_nouveau') }}">Nouveau</a>
+</div>
+
+<div id="main">
+	<h3>Liste des utilisateurs</h3>
+	<table border>
+		<tr><td>id</td><td>Nom</td><td width="400">Adresse</td><td>Télèphone</td><td></td><td></td></tr>
+		{% for utilisateur in utilisateurs %}
+		<tr>
+			<td>{{ utilisateur.id }}</td>
+			<td>{{ utilisateur.username }}</td>
+			<td>{{ utilisateur.addresse }}</td>
+			<td>{{ utilisateur.telephone }}</td>
+			<td><a href="{{ path('admin_utilisateur_modifier', {'id': utilisateur.id}) }}">Modifier</a></td>
+			<td><a href="{{ path('admin_utilisateur_supprimer', {'id': utilisateur.id}) }}"Supprimer</a></td>
+		</tr>	
+		{% endfor %}	
+	</table>
+</div>
+{% endblock %}

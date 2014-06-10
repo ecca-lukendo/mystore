@@ -1,0 +1,32 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Comte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li>Utilisateurs</li> |
+		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
+		<li><a href="{{ path('admin_categories') }}">Catégories</a></li> |
+		<li><a href="#">Commandes</a></li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Utilisateur</h3>
+	<a href="{{ path('admin') }}">Retour</a>
+</div>
+
+<div id="main">
+	<h3>Nouvel utilisateur</h3>
+	<table>
+		{{ form_start(form, {'action': path('admin_utilisateur_modifier', {'id': id}), 'method': 'POST'}) }}
+			<tr><td>{{ form_label(form.username) }}</td><td>{{ form_widget(form.username) }}</td></tr>
+			<tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>
+			<tr><td>{{ form_label(form.addresse) }}</td><td>{{ form_widget(form.addresse) }}</td></tr>
+			<tr><td>{{ form_label(form.telephone) }}</td><td>{{ form_widget(form.telephone) }}</td></tr>
+			<tr><td colspan="2" align="right"><input type="submit" value="Enregistrer"/></td></tr>
+		{{ form_end(form) }}
+	</table>
+</div>
+{% endblock %}
