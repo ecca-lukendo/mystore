@@ -4,7 +4,11 @@ namespace Sdz\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sdz\MainBundle\Entity\Utilisateur;
+use Sdz\MainBundle\Entity\Categorie;
+use Sdz\MainBundle\Entity\Produit;
 use Sdz\MainBundle\Form\UtilisateurType;
+use Sdz\MainBundle\Form\CategorieType;
+use Sdz\MainBundle\Form\ProduitType;
 
 class AdminController extends Controller
 {
@@ -112,17 +116,88 @@ class AdminController extends Controller
 
 	public function nouvProdAction()
 	{
-		return $this->render('SdzMainBundle:Admin:nouvprod.html.twig');
+		$produit = new Produit();
+
+		$form = $this->createForm(new ProduitType(), $produit);
+
+		$request = $this->getRequest();
+
+		if($request->getMethod() == 'POST')
+		{
+
+			$form->bind($request);
+
+			if($form->isValid())
+			{
+
+				$em = $this->getDoctrine()->getManager();
+
+				$categorie = $em->getRepository('SdzMainBundle:Categorie')->find($produit->getCategorie()->getId());
+
+				$produit->setCategorie($categorie);
+
+				$em->persist($produit);
+
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('admin_produits'));
+			}
+		}
+		return $this->render('SdzMainBundle:Admin:nouvprod.html.twig', array('form' => $form->createView()));
 	}
 
 	public function modifProdAction($id)
 	{
-		return $this->render('SdzMainBundle:Admin:modifprod.html.twig');
+		$em = $this->getDoctrine()->getManager();
+
+		$produit = $em->getRepository('SdzMainBundle:Produit')->find($id);
+
+		$form = $this->createForm(new ProduitType(), $produit);
+
+		$request = $this->getRequest();
+
+		if($request->getMethod() == 'POST')
+		{
+			$form->bind($request);
+			
+			if($form->isValid())
+			{
+
+				$categorie = $em->getRepository('SdzMainBundle:Categorie')->find($produit->getCategorie()->getId());
+
+				$produit->setCategorie($categorie);
+
+				$em->persist($produit);
+
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('admin_produits'));
+			}
+		}
+		return $this->render('SdzMainBundle:Admin:modifprod.html.twig', array('id' => $id, 'form' => $form->createView()));
 	}
 
 	public function supProdAction($id)
 	{
-		return $this->render('SdzMainBundle:Admin:supprod.html.twig');
+		$request = $this->getRequest();
+
+		if($request->getMethod() == 'POST')
+		{
+			if($request->get('rep') == 'Oui')
+			{
+				$em = $this->getDoctrine()->getManager();
+
+				$produit = $em->getRepository('SdzMainBundle:Produit')->find($id);
+
+				$produit->setCategorie(null);
+
+				$em->remove($produit);
+
+				$em->flush();
+			}
+			return $this->redirect($this->generateUrl('admin_produits'));
+		}
+		return $this->render('SdzMainBundle:Admin:supprod.html.twig', array('id' => $id));
 	}
 
 
@@ -138,19 +213,101 @@ class AdminController extends Controller
 
 	public function nouvCatAction()
 	{
-		return $this->render('SdzMainBundle:Admin:nouvcat.html.twig');
+		$categorie = new Categorie();
+		
+		$form = $this->createForm(new CategorieType(), $categorie);
+
+		$request = $this->getRequest();
+		
+		if($request->getMethod() == 'POST')
+		{
+			$form->bind($request);
+
+			if($form->isValid())
+			{
+				$em = $this->getDoctrine()->getManager();
+
+				$em->persist($categorie);
+
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('admin_categories'));
+			}
+
+		}
+
+		return $this->render('SdzMainBundle:Admin:nouvcat.html.twig', array('form' => $form->createView()));
 	}
 	
 	public function modifCatAction($id)
 	{
-		return $this->render('SdzMainBundle:Admin:modifcat.html.twig');
+		$em = $this->getDoctrine()->getManager();
+	
+		$categorie = $em->getRepository('SdzMainBundle:Categorie')->find($id);
+
+		$form = $this->createForm(new CategorieType(), $categorie);
+
+		$request = $this->getRequest();
+
+		if($request->getMethod() == 'POST')
+		{
+			$form->bind($request);
+
+			if($form->isValid())
+			{
+				$em->persist($categorie);
+
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('admin_categories'));
+			}
+			
+		}
+		return $this->render('SdzMainBundle:Admin:modifcat.html.twig', array('id' => $id, 'form' => $form->createView()));
 	}
 
 	public function supCatAction($id)
 	{
-		return $this->render('SdzMainBundle:Admin:supcat.html.twig');
+		$request = $this->getRequest();
+
+		if($request->getMethod() == 'POST')
+		{
+
+			if($request->get('rep') == 'Oui')
+			{
+				$em = $this->getDoctrine()->getManager();
+
+				$categorie = $em->getRepository('SdzMainBundle:Categorie')->find($id);
+
+				$em->remove($categorie);
+
+				$em->flush();
+			}
+			
+			return $this->redirect($this->generateUrl('admin_categories'));
+		}
+		return $this->render('SdzMainBundle:Admin:supcat.html.twig', array('id' => $id));
 	}
 
+	public function commandesAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		
+		$commandes = $em->getRepository('SdzMainBundle:Commande')->getMontantCommande();
 
+		return $this->render('SdzMainBundle:Admin:commandes.html.twig', array('commandes' => $commandes));
+	}
+
+	public function voirComAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+		$commande = $em->getRepository('SdzMainBundle:Commande')->getCommande($id);
+
+		$lignes = $em->getRepository('SdzMainBundle:LigneCommande')->getLigneCommandes($id);
+
+		return $this->render('SdzMainBundle:Admin:voircom.html.twig', array('commande' => $commande, 'lignes' => $lignes));
+		
+	}
 
 }

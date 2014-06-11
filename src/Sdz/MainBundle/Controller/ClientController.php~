@@ -7,6 +7,12 @@ class ClientController extends Controller
 {
 	public function indexAction()
 	{
-		return $this->render('SdzMainBundle:Client:index.html.twig');
+		$em = $this->getDoctrine()->getManager();
+
+		$user = $this->getUser();
+	
+		$commandes = $em->getRepository('SdzMainBundle:Commande')->getUserCommande($user->id);
+
+		return $this->render('SdzMainBundle:Client:index.html.twig', array('commandes' => $commandes));
 	}
 }

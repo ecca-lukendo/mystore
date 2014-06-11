@@ -14,13 +14,18 @@ body{
 	width: 800px;
 	height: 700px;
 }
+#menu ul{
+	margin-left: -40px;
+}
 #menu li{
 	display: inline;
 }
 #side{
 	float: left;
 	width: 100px;
-	
+}
+#side ul{
+	margin-left: -30px;
 }
 #main{
 	float: right;

@@ -1,0 +1,30 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Compte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li><a href="{{ path('admin') }}">Utilisateurs</a></li> |
+		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
+		<li>Catégories</li> |
+		<li><a href="{{ path('admin_commandes') }}">Commandes</a></li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Catégorie</h3>
+	<a href="{{ path('admin_categories') }}">Retour</a>
+</div>
+
+<div id="main">
+	<h3>Modifier categorie</h3>
+	{{ form_errors(form) }}
+	<table>
+		{{ form_start(form, {'action': path('admin_categorie_modifier', {'id': id}), 'method': 'POST'}) }}
+		<tr><td>{{ form_label(form.nom) }}</td><td>{{ form_widget(form.nom) }}</td></tr>
+		<tr><td colspan="2" align="right"><input type="submit" value="Enregistrer"/></td></tr>
+		{{ form_end(form) }}		
+	</table>
+</div>
+{% endblock %}

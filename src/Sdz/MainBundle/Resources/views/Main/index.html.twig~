@@ -5,8 +5,15 @@
 {% block body %}
 
 <div id="side">
-	<h3>Client</h3>
-	<a href="">Nouveau</a>
+	<h3>Categories</h3>
+		<ul>
+			<li><a href="{{ path('home', {'id': 0}) }}">Tous</a></li>
+			{% for categorie in categories %}
+
+				<li><a href="{{ path('home', {'id': categorie.id }) }}">{{ categorie.nom }}</a></li>
+
+			{% endfor %}
+	</ul>
 </div>
 
 <div id="main">

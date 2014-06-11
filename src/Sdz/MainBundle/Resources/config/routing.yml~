@@ -23,15 +23,15 @@ admin:
 
 admin_utilisateur_nouveau:
     pattern: /admin/utilisateurs/nouveau
-    defaults: { _controller: SdzMainBundle:Admin:nouvutil }
+    defaults: { _controller: SdzMainBundle:Admin:nouvUtil }
 
 admin_utilisateur_modifier:
     pattern: /admin/utilisateurs/modifier/{id}
-    defaults: { _controller: SdzMainBundle:Admin:modifutil }
+    defaults: { _controller: SdzMainBundle:Admin:modifUtil }
 
 admin_utilisateur_supprimer:
     pattern: /admin/utilisateurs/supprimer/{id}
-    defaults: { _controller: SdzMainBundle:Admin:suputil }
+    defaults: { _controller: SdzMainBundle:Admin:supUtil }
 
 admin_produits:
    pattern: /admin/produits
@@ -42,11 +42,11 @@ admin_produit_nouveau:
    defaults: { _controller: SdzMainBundle:Admin:nouvProd }
 
 admin_produit_modifier:
-   pattern: /admin/produits/modifier
+   pattern: /admin/produits/modifier/{id}
    defaults: { _controller: SdzMainBundle:Admin:modifProd }
 
 admin_produit_supprimer:
-   pattern: /admin/produits/supprimer
+   pattern: /admin/produits/supprimer/{id}
    defaults: { _controller: SdzMainBundle:Admin:supProd }
 
 admin_categories:
@@ -68,6 +68,14 @@ admin_categorie_supprimer:
    defaults: { _controller: SdzMainBundle:Admin:supCat }
    requirements:
              id: \d+
+
+admin_commandes:
+  pattern: /admin/commandes
+  defaults: { _controller: SdzMainBundle:Admin:commandes }
+
+admin_commande_voir:
+  pattern: /admin/commande/voir/{id}
+  defaults: { _controller: SdzMainBundle:Admin:voirCom }
 
 client:
     pattern: /client

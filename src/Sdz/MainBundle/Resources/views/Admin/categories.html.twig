@@ -1,6 +1,6 @@
 {% extends "SdzMainBundle::layout.html.twig" %}
 
-{% block title %} {{ parent() }} - Comte admin {% endblock %}
+{% block title %} {{ parent() }} - Compte admin {% endblock %}
 
 {% block body %}
 <h3>Compte admin</h3>
@@ -9,12 +9,12 @@
 		<li><a href="{{ path('admin') }}">Utilisateurs</a></li> |
 		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
 		<li>Catégories</li> |
-		<li><a href="#">Commandes</a></li>
+		<li><a href="{{ path('admin_commandes') }}">Commandes</a></li>
 	</ul>
 </div>
 <div id="side">	
 	<h3>Catégorie</h3>
-	<a href="#">Nouveau</a>
+	<a href="{{ path('admin_categorie_nouveau') }}">Nouveau</a>
 </div>
 
 <div id="main">

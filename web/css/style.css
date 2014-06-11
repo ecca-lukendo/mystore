@@ -23,7 +23,9 @@ body{
 #side{
 	float: left;
 	width: 100px;
-	
+}
+#side ul{
+	margin-left: -25px;
 }
 #main{
 	float: right;

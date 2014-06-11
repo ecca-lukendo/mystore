@@ -1,6 +1,6 @@
 {% extends "SdzMainBundle::layout.html.twig" %}
 
-{% block title %} {{ parent() }} - Comte admin {% endblock %}
+{% block title %} {{ parent() }} - Compte admin {% endblock %}
 
 {% block body %}
 <h3>Compte admin</h3>
@@ -14,7 +14,7 @@
 </div>
 <div id="side">	
 	<h3>Catégorie</h3>
-	<a href="#">Nouveau</a>
+	<a href="{{ path('admin_categorie_nouveau') }}">Nouveau</a>
 </div>
 
 <div id="main">
@@ -27,7 +27,7 @@
 
 			<tr>
 
-				<td>{{ categorie.id }}"></td>
+				<td>{{ categorie.id }}</td>
 
 				<td>{{ categorie.nom }}</td>
 

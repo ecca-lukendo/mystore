@@ -1,0 +1,35 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Comte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li><a href="{{ path('admin') }}">Utilisateurs</a></li> |
+		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
+		<li><a href="{{ path('admin_categories') }}">Catégories</a></li> |
+		<li>Commandes</li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Commande</h3>
+	<a href="{{ path('admin_commandes') }}">Retour</a>
+</div>
+
+<div id="main">
+	<h3>Commande</h3>
+	<table border width="700">
+		<tr><td>Commande id</td><td>{{ commande.id }}</td></tr>
+		<tr><td>Montant</td><td>{{ commande.montant|number_format(2) }}</td></tr>
+		<tr><td>Date</td><td>{{ commande.date|date('d/m/Y') }}</td></tr>
+	</table>
+	<p>Details de la commande</p>
+	<table border width="700">
+		<tr><td>Produit</td><td>Prix unitaire</td><td>Qte</td></tr>
+		{% for ligne in lignes %}
+			<tr><td>{{ ligne.nom }}</td><td>{{ ligne.prix }}</td><td>{{ ligne.quantite }}</td></tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

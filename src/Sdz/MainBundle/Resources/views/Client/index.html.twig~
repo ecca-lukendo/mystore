@@ -7,7 +7,27 @@
 <div id="menu">
 	<ul>
 		<li><a href="#">Commandes</a></li> |
-		<li><a href="#">compte</a></li>
+		<li><a href="#">Mon compte</a></li>
 	</ul>
 </div>
+
+<div id="side">	
+	<h3>Commandes</h3>
+</div>
+
+<div id="main">
+	<h3>Liste des commandes</h3>
+	<table border width="700">
+		<tr><td>id</td><td>Date</td><td>Montant</td><td></td></tr>
+		{% for commande in commandes %}
+		<tr>
+			<td>{{ commande.id }}</td>
+			<td>{{ commande.date|date('d/m/Y')}}</td>
+			<td>{{ commande.montant|number_format(2) }}</td>
+			<td><a href="{{ path('admin_commande', {'id': commande.id}) }}">Voir</a></td>
+		</tr>	
+		{% endfor %}	
+	</table>
+</div>
+
 {% endblock %}

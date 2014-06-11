@@ -1,0 +1,35 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Compte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li><a href="{{ path('admin') }}">Utilisateurs</a></li> |
+		<li>Produits</li> |
+		<li><a href="{{ path('admin_categories') }}">Catégories</a></li> |
+		<li><a href="{{ path('admin_commandes') }}">Commandes</a></li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Produit</h3>
+	<a href="{{ path('admin_produits') }}">Retour</a>
+</div>
+
+<div id="main">
+	<h3>Nouveau produit</h3>
+	{{ form_errors(form) }}
+	<table>
+		{{ form_start(form, {'action': path('admin_produit_nouveau'), 'method': 'POST'}) }}
+			<tr><td>{{ form_label(form.categorie) }}</td><td>{{ form_widget(form.categorie) }}</td></tr>
+			<tr><td>{{ form_label(form.nom) }}</td><td>{{ form_widget(form.nom) }}</td></tr>
+			<tr><td>{{ form_label(form.description) }}</td><td>{{ form_widget(form.description) }}</td></tr>
+			<tr><td>{{ form_label(form.prix) }}</td><td>{{ form_widget(form.prix) }}</td></tr>
+			<tr><td>{{ form_label(form.quantite) }}</td><td>{{ form_widget(form.quantite) }}</td></tr>
+			<tr><td>{{ form_label(form.image) }}</td><td>{{ form_widget(form.image) }}</td></tr>
+			<tr><td colspan="2" align="right"><input type="submit" value="Enregistrer"/></td></tr>
+		{{ form_end(form) }}
+	</table>
+</div>
+{% endblock %}

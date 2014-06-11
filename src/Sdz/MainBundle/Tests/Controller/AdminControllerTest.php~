@@ -4,16 +4,14 @@ namespace Sdz\MainBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class MainControllerTest extends WebTestCase
+class AdminControllerTest extends WebTestCase
 {
-	public function testIndex()
+	public function testCategories()
 	{
 		$client = static::createClient();
-		$client->request('GET', '/produits');
+		$client->request('GET', '/admin/categories');
 		$this->assertEquals(200, $client->getResponse()->getStatusCode());
 	}
 
+
 }
-
-
-

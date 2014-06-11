@@ -1,0 +1,34 @@
+{% extends "SdzMainBundle::layout.html.twig" %}
+
+{% block title %} {{ parent() }} - Compte admin {% endblock %}
+
+{% block body %}
+<h3>Compte admin</h3>
+<div id="menu">
+	<ul>
+		<li><a href="{{ path('admin') }}">Utilisateurs</a></li> |
+		<li><a href="{{ path('admin_produits') }}">Produits</a></li> |
+		<li>Catégories</li> |
+		<li><a href="{{ path('admin_commandes') }}">Commandes</a></li>
+	</ul>
+</div>
+<div id="side">	
+	<h3>Catégorie</h3>
+	<a href="{{ path('admin_categories') }}">Retour</a>
+</div>
+
+<div id="main">
+	<h3>Supprimer categorie</h3>
+	<table width="250">
+		<form action="{{ path('admin_categorie_supprimer', {'id': id}) }}" method="POST">
+			<tr><td>Voulez-vous supprimer la catégorie {{ id }}?</td>
+			<tr>
+				<td align="right">
+					<input type="submit" name="rep" value="Oui"/>
+					<input type="submit" name="rep" value="Non"/>
+				</td>
+			</tr>
+		</form>	
+	</table>
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@ class Produit
 	
 		/**
 		*	@ORM\ManyToOne(targetEntity="Sdz\MainBundle\Entity\Categorie")
-		* @ORM\JoinColumn(nullable=false)
+		* @ORM\JoinColumn(nullable=true)
 		*/
 		private $categorie;
 
@@ -48,6 +48,14 @@ class Produit
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+
+		
+		/**
+     * @var integer
+     *
+     * @ORM\Column(name="quantite", type="integer", nullable=true)
+     */
+    private $quantite;
 
 	
 		/**
@@ -178,5 +186,28 @@ class Produit
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set quantite
+     *
+     * @param integer $quantite
+     * @return Produit
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite
+     *
+     * @return integer 
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
     }
 }
